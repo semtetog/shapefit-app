@@ -12,10 +12,16 @@
     },
     "production": {
       "ios": {
-        "image": "latest",
-        "cocoapods": "1.15.2"
+        "image": "latest"
       },
-      "pre-build": "cd ios/App && pod install && cd ../.."
+      "hooks": {
+        "build": [
+          {
+            "file": "run-pod-install.sh",
+            "command": "./run-pod-install.sh"
+          }
+        ]
+      }
     }
   },
   "submit": {
