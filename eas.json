@@ -1,7 +1,6 @@
 {
   "cli": {
-    "version": ">= 16.17.4",
-    "appVersionSource": "remote"
+    "version": ">= 7.6.0"
   },
   "build": {
     "development": {
@@ -12,7 +11,11 @@
       "distribution": "internal"
     },
     "production": {
-      "autoIncrement": true
+      "ios": {
+        "image": "latest",
+        "cocoapods": "1.15.2"
+      },
+      "pre-build": "cd ios/App && pod install && cd ../.."
     }
   },
   "submit": {
