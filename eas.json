@@ -13,14 +13,6 @@
     "production": {
       "ios": {
         "image": "latest"
-      },
-      "hooks": {
-        "build": [
-          {
-            "file": "run-pod-install.sh",
-            "command": "./run-pod-install.sh"
-          }
-        ]
       }
     }
   },

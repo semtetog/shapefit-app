@@ -20,6 +20,7 @@
     "@capacitor/preferences": "^7.0.1",
     "@capacitor/push-notifications": "^7.0.2",
     "@capacitor/toast": "^7.0.1",
+    "eas-cli": "^16.17.4",
     "expo-application": "^6.1.5",
     "expo-constants": "^17.1.7",
     "expo-device": "^7.1.4",
