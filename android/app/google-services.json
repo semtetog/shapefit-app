@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "182965470567",
+    "project_id": "shapefit-2a566",
+    "storage_bucket": "shapefit-2a566.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:182965470567:android:c905cc8bb3ffc49b289bc2",
+        "android_client_info": {
+          "package_name": "br.com.shapefit.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCog2HIy45NjY-PaMGpZiuRRLKmxamyLT0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

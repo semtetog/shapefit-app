@@ -1,0 +1,785 @@
+/* ========================================================================= */
+/*          PAINEL ADMIN FITLAB - CSS COMPLETO E UNIFICADO V5.0              */
+/* ========================================================================= */
+
+/* --- 1. FONTES E VARIÁVEIS DE TEMA --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+    --bg-color: #121212;
+    --surface-color: #1E1E1E;
+    --sidebar-bg: #181818;
+    --primary-text-color: #EAEAEA;
+    --secondary-text-color: #A0A0A0;
+    --accent-orange: #FF6B00;
+    --accent-orange-hover: #e65c00;
+    --primary-blue: #36A2EB;
+    --danger-red: #F44336;
+    --success-green: #4CAF50;
+    --border-color: #2c2c2c;
+    --font-family: 'Poppins', sans-serif;
+}
+
+/* --- 2. RESET BÁSICO E ESTILOS GLOBAIS --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+    color: var(--primary-text-color);
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- 3. LAYOUT PRINCIPAL --- */
+.admin-wrapper { display: flex; }
+.sidebar { width: 250px; background-color: var(--sidebar-bg); border-right: 1px solid var(--border-color); min-height: 100vh; display: flex; flex-direction: column; position: fixed; top: 0; left: 0; height: 100%; z-index: 100; }
+.sidebar-header { padding: 25px 20px; text-align: center; border-bottom: 1px solid var(--border-color); }
+.sidebar-header .logo { font-size: 26px; font-weight: 700; text-decoration: none; color: var(--primary-text-color); }
+.sidebar-nav { flex-grow: 1; overflow-y: auto; }
+.sidebar-nav ul { list-style: none; padding: 20px 0; margin: 0; }
+.sidebar-nav li a { display: flex; align-items: center; padding: 14px 25px; text-decoration: none; color: var(--secondary-text-color); font-weight: 500; transition: all 0.2s ease; border-left: 4px solid transparent; }
+.sidebar-nav li a i { margin-right: 18px; width: 20px; text-align: center; font-size: 18px; line-height: 1; }
+.sidebar-nav li.active a, .sidebar-nav li a:hover { color: var(--accent-orange); background-color: rgba(255, 107, 0, 0.08); border-left-color: var(--accent-orange); }
+.main-content { flex-grow: 1; margin-left: 250px; display: flex; flex-direction: column; }
+.main-header { display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; background-color: var(--surface-color); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 99; }
+.user-info span { font-weight: 500; font-size: 15px; }
+.user-info small { display: block; color: var(--secondary-text-color); font-size: 12px; }
+.main-header .header-actions a { color: var(--secondary-text-color); font-size: 22px; transition: color 0.2s ease; }
+.main-header .header-actions a:hover { color: var(--accent-orange); }
+.content-wrapper { padding: 30px; animation: fadeIn 0.5s ease-out; }
+.content-wrapper h2 { font-size: 28px; font-weight: 600; margin-top: 0; margin-bottom: 30px; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* --- 4. COMPONENTES GERAIS --- */
+.btn { padding: 10px 20px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 14px; border: 1px solid transparent; transition: all 0.2s ease; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+.btn-primary { background-color: var(--accent-orange); border-color: var(--accent-orange); color: white; }
+.btn-primary:hover { background-color: var(--accent-orange-hover); border-color: var(--accent-orange-hover); transform: translateY(-2px); box-shadow: 0 4px 10px rgba(255, 107, 0, 0.2); }
+.toolbar { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px; margin-bottom: 25px; }
+.search-form { display: flex; flex-grow: 1; max-width: 450px; }
+.search-form input { padding: 10px 15px; border: 1px solid var(--border-color); border-right: none; border-radius: 8px 0 0 8px; background-color: var(--surface-color); color: var(--primary-text-color); width: 100%; outline: none; font-size: 14px; }
+.search-form input:focus { border-color: var(--accent-orange); box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.1); }
+.search-form button { padding: 10px 15px; border: 1px solid var(--border-color); background-color: var(--surface-color); color: var(--secondary-text-color); border-radius: 0 8px 8px 0; cursor: pointer; }
+.content-card { background-color: var(--surface-color); padding: 25px; border-radius: 12px; border: 1px solid var(--border-color); }
+.empty-state { text-align: center; padding: 50px; color: var(--secondary-text-color); font-style: italic; }
+
+/* --- 5. ESTILOS DO DASHBOARD --- */
+.stats-cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin-bottom: 30px; }
+.stat-card { background-color: var(--surface-color); padding: 25px; border-radius: 12px; text-align: center; border: 1px solid var(--border-color); }
+.stat-card h3 { margin: 0 0 10px 0; font-size: 14px; font-weight: 500; color: var(--secondary-text-color); text-transform: uppercase; letter-spacing: 0.5px; }
+.stat-card .stat-value { font-size: 42px; font-weight: 700; color: var(--primary-text-color); margin: 0; line-height: 1; }
+.dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 25px; }
+.dashboard-card { background-color: var(--surface-color); padding: 25px; border-radius: 12px; border: 1px solid var(--border-color); }
+.dashboard-card h3 { margin-top: 0; font-size: 18px; font-weight: 600; color: var(--primary-text-color); border-bottom: 1px solid var(--border-color); padding-bottom: 15px; margin-bottom: 25px; }
+.dashboard-card.large-card { grid-column: 1 / -1; }
+.dashboard-card canvas { max-height: 320px; width: 100% !important; }
+
+/* --- 6. ESTILOS DE LISTA DE PACIENTES (users.php) --- */
+.user-cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
+.user-card { background-color: var(--surface-color); border-radius: 12px; border: 1px solid var(--border-color); text-decoration: none; color: var(--primary-text-color); display: flex; flex-direction: column; transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, border-color 0.2s ease-out; overflow: hidden; }
+.user-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.3); border-color: var(--accent-orange); }
+.user-card-header { height: 100px; background-color: var(--surface-color); display: flex; justify-content: center; align-items: center; position: relative; border-bottom: 1px solid var(--border-color); }
+.user-card-header .user-card-avatar, 
+.user-card-header .initials-avatar { width: 90px; height: 90px; border-radius: 50%; border: 4px solid var(--surface-color); position: absolute; bottom: -45px; }
+.user-card-header .user-card-avatar { object-fit: cover; }
+.user-card-header .initials-avatar { display: flex; align-items: center; justify-content: center; font-size: 32px; font-weight: 600; color: white; text-transform: uppercase; }
+.user-card-body { padding: 60px 20px 20px 20px; text-align: center; flex-grow: 1; }
+.user-card-name { font-size: 18px; font-weight: 600; margin: 0 0 5px 0; }
+.user-card-email { font-size: 14px; color: var(--secondary-text-color); margin: 0; word-break: break-all; }
+.user-card-footer { padding: 15px 20px; border-top: 1px solid var(--border-color); text-align: center; }
+.user-card-date { font-size: 12px; color: var(--secondary-text-color); display: flex; align-items: center; justify-content: center; gap: 8px; }
+.pagination-footer { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; padding: 25px 0 10px 0; margin-top: 15px; gap: 20px; }
+.pagination-info { font-size: 14px; color: var(--secondary-text-color); }
+.pagination-container { display: flex; justify-content: center; align-items: center; gap: 8px; }
+.pagination-link { color: var(--secondary-text-color); text-decoration: none; padding: 8px 14px; border: 1px solid var(--border-color); border-radius: 6px; font-weight: 500; font-size: 14px; transition: all 0.2s ease; }
+.pagination-link:hover { background-color: var(--surface-color); color: var(--primary-text-color); border-color: var(--secondary-text-color); }
+.pagination-link.active { background-color: var(--accent-orange); border-color: var(--accent-orange); color: white; cursor: default; }
+
+/* ========================================================================= */
+/*      SEÇÃO 7: DETALHES DO PACIENTE (view_user.php) - V2 PROFISSIONAL     */
+/* ========================================================================= */
+
+/* --- 7.1. Cabeçalho Principal do Paciente --- */
+.view-user-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 25px;
+    background: var(--surface-color);
+    padding: 25px 30px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    border: 1px solid var(--border-color);
+}
+
+.user-main-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-grow: 1;
+}
+
+.profile-avatar-large, 
+.initials-avatar.large {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid var(--accent-orange);
+    box-shadow: 0 0 15px rgba(255, 107, 0, 0.2);
+    object-fit: cover;
+    flex-shrink: 0; /* Impede que o avatar encolha */
+}
+
+.initials-avatar.large {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    font-weight: 600;
+    color: white;
+}
+
+.user-contact-details h2 {
+    margin: 0 0 5px 0;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--primary-text-color);
+}
+
+.user-contact-details p {
+    margin: 4px 0 0 0;
+    color: var(--secondary-text-color);
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.user-contact-details .icon-sm {
+    width: 14px;
+    text-align: center;
+}
+
+
+/* --- 7.2. Grid de Cards de Detalhes --- */
+.details-grid-3-cols {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+}
+
+/* Herda de .dashboard-card, mas com um grid interno específico */
+.physical-data-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Uma coluna por padrão */
+    gap: 18px;
+}
+
+.data-item {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Aumenta o espaçamento */
+    font-size: 15px;
+    padding: 5px 0;
+}
+
+.data-item .icon {
+    color: var(--accent-orange);
+    width: 20px;
+    text-align: center;
+    font-size: 16px;
+    opacity: 0.8;
+}
+
+.data-item label {
+    color: var(--secondary-text-color);
+    margin: 0;
+}
+
+.data-item span {
+    margin-left: auto; /* Joga para a direita */
+    font-weight: 500;
+    color: var(--primary-text-color);
+    text-align: right;
+}
+
+/* Para itens que precisam de mais espaço, como restrições */
+.data-item.wide {
+    align-items: flex-start; /* Alinha o ícone no topo */
+}
+.data-item.wide span.wrap-text {
+    text-align: right;
+    white-space: normal; /* Permite que o texto quebre linha */
+    max-width: 70%; /* Evita que o texto esprema o label */
+}
+
+
+/* --- 7.3. Card de Metas e Macros (estilo específico) --- */
+.meta-card-main {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.meta-value {
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--accent-orange);
+    line-height: 1;
+}
+
+.meta-label {
+    display: block;
+    font-size: 14px;
+    color: var(--secondary-text-color);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 5px;
+}
+
+.meta-card-macros {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    font-size: 14px;
+    color: var(--secondary-text-color);
+    border-top: 1px solid var(--border-color);
+    padding-top: 20px;
+    margin-top: 20px;
+}
+
+.meta-card-macros div span {
+    display: block;
+    font-weight: 600;
+    font-size: 20px;
+    margin-bottom: 4px;
+    color: var(--primary-text-color);
+}
+
+/* --- 8. ESTILOS PARA ABAS E CONTEÚDO EM VIEW_USER.PHP --- */
+.tabs-container { display: flex; border-bottom: 1px solid var(--border-color); margin-top: 30px; margin-bottom: 25px; }
+.tab-link { padding: 12px 25px; cursor: pointer; font-size: 16px; font-weight: 500; color: var(--secondary-text-color); border-bottom: 3px solid transparent; transition: color 0.2s ease, border-color 0.2s ease; margin-bottom: -1px; }
+.tab-link:hover { color: var(--primary-text-color); }
+.tab-link.active { color: var(--accent-orange); border-bottom-color: var(--accent-orange); }
+.tab-content { display: none; animation: fadeIn 0.4s ease; }
+.tab-content.active { display: block; }
+.card-header-flex { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; margin-bottom: 20px; }
+.card-header-flex h3 { margin: 0; padding: 0; border: none; font-size: 18px; font-weight: 600; }
+.date-filter-form { display: flex; align-items: center; gap: 10px; }
+.date-filter-form label { font-size: 13px; font-weight: 500; color: var(--secondary-text-color); white-space: nowrap; }
+.date-filter-form input[type="date"] { background-color: var(--bg-color); color: var(--primary-text-color); border: 1px solid var(--border-color); border-radius: 8px; padding: 8px 12px; font-family: var(--font-family); font-size: 14px; font-weight: 500; outline: none; transition: all 0.2s ease; }
+.date-filter-form input[type="date"]:hover { border-color: var(--secondary-text-color); }
+.date-filter-form input[type="date"]:focus { border-color: var(--accent-orange); box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.1); }
+.date-filter-form input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); cursor: pointer; opacity: 0.6; transition: opacity 0.2s ease; }
+.date-filter-form input[type="date"]::-webkit-calendar-picker-indicator:hover { opacity: 1; }
+.diary-history-container { max-height: 600px; overflow-y: auto; padding-right: 10px; }
+.diary-day-group { margin-bottom: 25px; }
+.day-header { font-size: 18px; font-weight: 600; color: var(--primary-text-color); padding-bottom: 10px; border-bottom: 2px solid var(--accent-orange); margin-bottom: 20px; }
+.meal-card { background-color: var(--bg-color); border: 1px solid var(--border-color); border-radius: 8px; margin-bottom: 15px; }
+.meal-card-header { display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; align-items: center; padding: 12px 15px; border-bottom: 1px solid var(--border-color); }
+.meal-card-header h5 { margin: 0; font-size: 15px; font-weight: 600; }
+.meal-card-totals { font-size: 13px; color: var(--secondary-text-color); }
+.meal-card-totals strong { color: var(--primary-text-color); font-weight: 600; }
+.food-item-list { list-style: none; padding: 0; margin: 0; }
+.food-item-list li { display: flex; justify-content: space-between; padding: 10px 15px; font-size: 14px; border-bottom: 1px solid var(--border-color); }
+.food-item-list li:last-child { border-bottom: none; }
+.food-item-list .food-name { color: var(--primary-text-color); }
+.food-item-list .food-quantity { color: var(--secondary-text-color); }
+.progress-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+.weight-history-card h4, .photos-history-card h4 { margin-top: 0; margin-bottom: 20px; font-size: 16px; font-weight: 600; }
+.weight-history-card canvas { max-height: 300px; }
+.photo-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; }
+.photo-item { position: relative; border-radius: 8px; overflow: hidden; aspect-ratio: 3 / 4; background-color: var(--bg-color); }
+.photo-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
+.photo-item:hover img { transform: scale(1.05); }
+.photo-item .photo-date { display: flex; justify-content: space-between; align-items: center; position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); color: white; padding: 10px; font-size: 13px; font-weight: 500; }
+
+/* --- 9. AJUSTES RESPONSIVOS FINAIS --- */
+@media (max-width: 1200px) {
+    .dashboard-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 992px) {
+    .sidebar { position: static; width: 100%; min-height: auto; flex-direction: row; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+    .sidebar-header { display: none; }
+    .sidebar-nav { flex-grow: 1; }
+    .sidebar-nav ul { display: flex; justify-content: flex-start; overflow-x: auto; padding: 0; }
+    .sidebar-nav li a { border-left: none; border-bottom: 4px solid transparent; padding: 15px 20px; white-space: nowrap; }
+    .sidebar-nav li.active a, .sidebar-nav li a:hover { border-bottom-color: var(--accent-orange); }
+    .main-content { margin-left: 0; }
+}
+
+@media (max-width: 768px) {
+    .content-wrapper { padding: 20px; }
+    .content-wrapper h2 { font-size: 22px; }
+    .toolbar { flex-direction: column; align-items: stretch; }
+    .search-form { max-width: 100%; }
+    .view-user-header { flex-direction: column; align-items: flex-start; }
+    .details-grid-3-cols { grid-template-columns: 1fr; } /* Empilha os cards */
+    .pagination-footer { flex-direction: column; }
+}
+
+/* ========================================================================= */
+/*      SEÇÃO 10: PÁGINA DE RANKING (ranks.php) - V2 (ADAPTADO P/ ADMIN)     */
+/* ========================================================================= */
+
+.ranking-page-container {
+    /* Herda a fonte do admin, não precisa de @import ou font-family aqui */
+}
+
+/* Garante que o H2 da página tenha o mesmo espaçamento do Dashboard */
+.ranking-page-container h2 {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+/* --- PÓDIO - Estilo adaptado para o Admin --- */
+.podium {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 25px; /* Aumenta o espaçamento */
+    padding: 30px 15px;
+    margin-bottom: 30px;
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+}
+
+.podium a.podium-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex; /* Garante que o link ocupe o espaço */
+    flex-direction: column;
+    align-items: center;
+}
+
+.podium-place {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 30%;
+    transition: transform 0.2s ease-out;
+}
+
+.podium-place:hover {
+    transform: translateY(-5px);
+}
+
+.podium-picture-wrapper {
+    position: relative;
+    margin-bottom: 12px;
+}
+
+.podium-picture {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--border-color); /* Borda sólida adaptada */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.podium-rank-badge {
+    position: absolute;
+    bottom: -5px;
+    right: -5px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1em;
+    font-weight: 700;
+    color: white;
+    border: 2px solid var(--surface-color); /* Borda correspondente ao fundo */
+}
+
+.podium-name {
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 4px;
+    color: var(--primary-text-color);
+}
+
+.podium-level {
+    font-size: 13px;
+    color: var(--secondary-text-color);
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.podium-points {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+/* Cores e elevação do Pódio */
+.podium-place.first { order: 2; transform: translateY(-20px); }
+.podium-place.first:hover { transform: translateY(-25px); }
+.podium-place.first .podium-picture { border-color: #FFD700; width: 95px; height: 95px; }
+.podium-place.first .podium-rank-badge { background: #FFD700; color: #1E1E1E; }
+.podium-place.first .podium-points { color: #FFD700; }
+
+.podium-place.second { order: 1; }
+.podium-place.second .podium-picture { border-color: #C0C0C0; }
+.podium-place.second .podium-rank-badge { background: #C0C0C0; color: #1E1E1E;}
+.podium-place.second .podium-points { color: #C0C0C0; }
+
+.podium-place.third { order: 3; }
+.podium-place.third .podium-picture { border-color: #CD7F32; }
+.podium-place.third .podium-rank-badge { background: #CD7F32; }
+.podium-place.third .podium-points { color: #CD7F32; }
+
+/* --- LISTA DE RANKING - Estilo adaptado para o Admin --- */
+.ranking-list-section {
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px;
+}
+.ranking-list { list-style: none; padding: 0; margin: 0; }
+.ranking-item { margin-bottom: 10px; }
+.ranking-item:last-child { margin-bottom: 0; }
+.ranking-item a.ranking-item-link {
+    display: flex;
+    align-items: center;
+    background-color: var(--bg-color); /* Fundo um pouco mais escuro */
+    border-radius: 10px;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    transition: all 0.2s ease;
+    text-decoration: none;
+    color: var(--primary-text-color);
+}
+.ranking-item a.ranking-item-link:hover {
+    border-color: var(--accent-orange);
+    transform: translateX(5px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.item-rank {
+    font-weight: 700;
+    color: var(--secondary-text-color);
+    width: 40px;
+    text-align: center;
+    font-size: 1.1em;
+    flex-shrink: 0;
+}
+.item-picture {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 15px;
+    border: 2px solid var(--border-color);
+    flex-shrink: 0;
+}
+.item-info-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+    min-width: 0;
+    align-items: flex-start; /* <<< ADICIONE ESTA LINHA */
+}
+.item-name {
+    font-weight: 600;
+    font-size: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 5px; /* <<< ALTERE/ADICIONE ESTA LINHA */
+}
+/* [CORREÇÃO] ESTILO CORRETO PARA A TAG DE NÍVEL */
+.item-level {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent-orange);
+    background-color: rgba(255, 107, 0, 0.1);
+    padding: 3px 10px;
+    border-radius: 20px; /* Borda arredondada */
+    border: 1px solid rgba(255, 107, 0, 0.3);
+    display: inline-block; /* Para o padding funcionar */
+    line-height: 1;
+}
+
+.item-points {
+    font-weight: 700;
+    color: var(--success-green);
+    white-space: nowrap;
+    font-size: 15px;
+    margin-left: auto;
+    padding-left: 15px;
+}
+
+/* --- ESTILO ADICIONAL PARA PAGINAÇÃO DO RANKING --- */
+.pagination-link-dots {
+    color: var(--secondary-text-color);
+    padding: 8px 5px;
+    font-weight: 500;
+}
+
+/* ========================================================================= */
+/*      SEÇÃO 11: GERENCIAR RECEITAS (recipes.php)                           */
+/* ========================================================================= */
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse; /* Remove espaços entre as células */
+    color: var(--primary-text-color);
+}
+
+.data-table th, .data-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: middle; /* Alinha o conteúdo verticalmente */
+}
+
+.data-table thead th {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--secondary-text-color);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background-color: var(--bg-color); /* Fundo um pouco mais escuro para o cabeçalho */
+}
+
+.data-table tbody tr:hover {
+    background-color: var(--bg-color); /* Efeito hover sutil */
+}
+
+/* Estilo para a imagem de preview na tabela */
+.table-image-preview {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+/* Estilos para os "badges" de status (Pública/Privada) */
+.status-badge {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-badge.status-public {
+    background-color: rgba(76, 175, 80, 0.1); /* Verde com opacidade */
+    color: var(--success-green);
+    border: 1px solid rgba(76, 175, 80, 0.2);
+}
+
+.status-badge.status-private {
+    background-color: rgba(244, 67, 54, 0.1); /* Vermelho com opacidade */
+    color: var(--danger-red);
+    border: 1px solid rgba(244, 67, 54, 0.2);
+}
+
+/* Estilos para os botões de ação (Ver, Editar, Apagar) */
+.btn-action {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    border-radius: 50%;
+    color: var(--secondary-text-color);
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    margin-right: 5px;
+    transition: all 0.2s ease;
+}
+
+.btn-action:hover {
+    transform: scale(1.1);
+    color: white;
+}
+
+.btn-action.view:hover {
+    background-color: var(--primary-blue);
+    border-color: var(--primary-blue);
+}
+
+.btn-action.edit:hover {
+    background-color: var(--accent-orange);
+    border-color: var(--accent-orange);
+}
+
+.btn-action.delete:hover {
+    background-color: var(--danger-red);
+    border-color: var(--danger-red);
+}
+
+/* Centraliza o empty-state quando usado em uma tabela */
+.data-table .empty-state {
+    text-align: center;
+    padding: 50px;
+}
+
+/* ========================================================================= */
+/*      SEÇÃO 12: FORMULÁRIO DE EDIÇÃO DE RECEITAS (edit_recipe.php)        */
+/* ========================================================================= */
+
+.edit-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Coluna principal mais larga */
+    gap: 25px;
+}
+
+.grid-col-main {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.grid-col-side {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+.form-group:last-child {
+    margin-bottom: 0;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--secondary-text-color);
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--bg-color);
+    color: var(--primary-text-color);
+    font-size: 14px;
+    font-family: var(--font-family);
+    transition: all 0.2s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--accent-orange);
+    box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.1);
+}
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.form-group-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.image-preview {
+    margin-top: 15px;
+    border: 1px dashed var(--border-color);
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+}
+.image-preview img {
+    max-width: 100%;
+    height: auto;
+    max-height: 150px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+.image-preview span {
+    font-size: 12px;
+    color: var(--secondary-text-color);
+}
+
+/* Estilos para Ingredientes Dinâmicos */
+.ingredient-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.ingredient-row input:first-child { flex-grow: 1; }
+.btn-remove-ingredient {
+    background-color: transparent;
+    border: 1px solid var(--danger-red);
+    color: var(--danger-red);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: 20px;
+    line-height: 28px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.btn-remove-ingredient:hover {
+    background-color: var(--danger-red);
+    color: white;
+}
+.btn-secondary {
+    background-color: var(--surface-color);
+    border-color: var(--border-color);
+    color: var(--secondary-text-color);
+}
+.btn-secondary:hover {
+    background-color: var(--border-color);
+    color: var(--primary-text-color);
+}
+
+/* Estilos para lista de checkboxes */
+.checkbox-group-scroll {
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid var(--border-color);
+    padding: 15px;
+    border-radius: 8px;
+}
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.checkbox-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 12px;
+    cursor: pointer;
+}
+.checkbox-item label {
+    margin-bottom: 0;
+    font-weight: 500;
+    color: var(--primary-text-color);
+    cursor: pointer;
+}
+
+.form-actions-footer {
+    position: sticky;
+    bottom: 0;
+    background-color: var(--surface-color);
+    padding: 15px 30px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin: 30px -30px -30px -30px; /* Compensa o padding do content-wrapper */
+}
+
+@media (max-width: 992px) {
+    .edit-grid {
+        grid-template-columns: 1fr; /* Empilha as colunas em telas menores */
+    }
+}

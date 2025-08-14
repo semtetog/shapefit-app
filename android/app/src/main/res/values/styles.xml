@@ -1,0 +1,38 @@
+<resources>
+
+    <!-- Tema padrão do app -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="alertDialogTheme">@style/CustomAlertDialog</item>
+
+
+        <!-- Este item garante que os dialogs terão um tema visível -->
+        <item name="alertDialogTheme">@style/CustomAlertDialog</item>
+    </style>
+
+    <!-- Tema claro para AlertDialog e outros popups -->
+    <style name="CustomAlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+
+        <item name="android:textColorPrimary">#000000</item> <!-- texto preto -->
+        <item name="android:background">#FFFFFF</item>       <!-- fundo branco -->
+    </style>
+
+    <!-- Tema sem ActionBar (não usado na splash) -->
+    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:background">@android:color/white</item>
+    </style>
+
+    <!-- Tema exclusivo para a splash, com fundo escuro fixo -->
+    <style name="AppTheme.Splash" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@android:color/black</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:background">@drawable/splash</item> <!-- seu logo ou imagem -->
+    </style>
+
+</resources>

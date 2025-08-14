@@ -1,0 +1,1026 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --bg-color: #121212;
+    --surface-color: #1E1E1E;
+    --primary-text-color: #E0E0E0;
+    --secondary-text-color: #A0A0A0;
+    --accent-orange: #FF6B00;
+    --accent-red: #D9534F; /* Usado em gradientes com laranja */
+    --border-color: #333333;
+    --success-color: #4CAF50; /* Verde para sucesso */
+    --danger-color: #F44336;  /* Vermelho para perigo/não */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    overflow-y: scroll; /* Força a barra de rolagem a estar sempre presente */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--primary-text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    padding: 20px 20px 0 20px; /* Padding do body geral */
+    font-size: 16px;
+}
+
+/* --- ESTILOS GLOBAIS E PARA PÁGINAS COMO DASHBOARD, ONBOARDING, LOGIN --- */
+/* (Baseados no CSS que você gostava para o Dashboard) */
+
+.container { /* Container geral para páginas como login, onboarding, dashboard */
+    width: 100%;
+    max-width: 480px;
+    padding: 20px;
+    background-color: var(--bg-color); /* Ou var(--surface-color) se os containers tiverem fundo diferente */
+    border-radius: 8px; /* Opcional, se os containers tiverem essa borda */
+}
+
+.header-nav {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    min-height: 24px;
+}
+
+.back-button {
+    font-size: 24px;
+    color: var(--primary-text-color);
+    text-decoration: none;
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+}
+.back-button i.fas {
+    font-size: 22px;
+    line-height: 1;
+}
+
+.back-button-text {
+    font-size: 16px;
+    color: var(--primary-text-color);
+    text-decoration: none;
+}
+
+.page-title {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--primary-text-color);
+    margin-bottom: 10px;
+    line-height: 1.2;
+}
+
+.page-subtitle {
+    font-size: 16px;
+    color: var(--secondary-text-color);
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block; /* Mantido do seu original */
+    font-size: 0.9em;
+    color: var(--secondary-text-color);
+    margin-bottom: 8px;
+}
+
+.form-control,
+select.form-control {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--primary-text-color);
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+}
+
+select.form-control {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23E0E0E0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e"); /* Seta original que você tinha */
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 1em;
+    padding-right: 40px;
+}
+
+.form-control::placeholder {
+    color: var(--secondary-text-color);
+    /* opacity: 0.7;  Removido pois o original não tinha */
+}
+
+.form-control:focus,
+select.form-control:focus {
+    outline: none;
+    border-color: var(--accent-orange);
+    box-shadow: 0 0 0 2px rgba(255, 107, 0, 0.3);
+}
+
+.btn {
+    display: inline-block; /* Revertido para o original do dashboard */
+    /* align-items: center; Removido pois o original não era flex */
+    /* justify-content: center; Removido */
+    width: 100%;
+    padding: 15px; /* Padding original */
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease, transform 0.1s ease, background-position 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    /* line-height: 1.2; Removido */
+}
+/* Ícones dentro de botões GENÉRICOS (se houver) */
+.btn i.fas, .btn i.far {
+    margin-right: 8px;
+    font-size: 1em; /* Tamanho igual ao texto do botão */
+    vertical-align: middle; /* Para alinhar com texto se display: inline-block */
+}
+
+.btn-primary {
+    background-image: linear-gradient(90deg, var(--accent-orange) 0%, var(--accent-red) 50%, var(--accent-orange) 100%);
+    background-size: 250% 100%;
+    background-position: 100% 0;
+    color: white;
+    /* transition já está no .btn */
+}
+.btn-primary:hover {
+    background-position: 0% 0;
+}
+.btn-primary:active {
+    transform: scale(0.98);
+}
+
+.btn-secondary {
+    background-color: var(--surface-color);
+    color: var(--primary-text-color);
+    border: 1px solid var(--border-color);
+}
+.btn-secondary:hover {
+    background-color: #383838;
+}
+
+.selectable-option {
+    display: block;
+    width: 100%;
+    padding: 15px 20px;
+    margin-bottom: 12px;
+    background-color: var(--surface-color);
+    color: var(--primary-text-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    text-align: left;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    position: relative;
+}
+.selectable-option:hover {
+    background-color: #383838; /* Revertido para o original */
+}
+.selectable-option.selected {
+    background-image: linear-gradient(90deg, var(--accent-orange), var(--accent-red));
+    border-color: var(--accent-orange); /* Revertido para o original */
+    color: white;
+    font-weight: 500;
+}
+.selectable-option input[type="radio"],
+.selectable-option input[type="checkbox"] {
+    opacity: 0; position: absolute; width: 0; height: 0;
+}
+
+.text-center { text-align: center; }
+.mt-1 { margin-top: 0.5rem; } .mt-2 { margin-top: 1rem; } .mt-3 { margin-top: 1.5rem; }
+.mb-1 { margin-bottom: 0.5rem; } .mb-2 { margin-bottom: 1rem; } .mb-3 { margin-bottom: 1.5rem; }
+
+.error-message {
+    color: #ff4d4d; /* Cor original */
+    font-size: 0.9em;
+    margin-top: 5px;
+    display: block;
+}
+
+/* Estilos do Goal Card (Dashboard) - Mantidos do seu original */
+.goal-card {
+    background-color: var(--surface-color);
+    padding: 25px;
+    border-radius: 12px;
+    margin-top: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+}
+.goal-card .main-goal {
+    background-image: linear-gradient(90deg, var(--accent-orange), var(--accent-red));
+    padding: 20px; border-radius: 10px; text-align: center;
+    margin-bottom: 25px; position: relative; overflow: hidden;
+}
+.goal-card .main-goal::before {
+    content: ''; position: absolute; top: 0; left: -150%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0) 100%);
+    transform: skewX(-25deg); animation: shine-effect 5s infinite linear;
+}
+@keyframes shine-effect {
+    0% { left: -150%; opacity: 0; } 40% { opacity: 0.15; }
+    60% { opacity: 0.15; } 100% { left: 150%; opacity: 0; }
+}
+.goal-card .main-goal h3 {
+    font-size: 16px; font-weight: 400; color: rgba(255,255,255,0.9);
+    margin-bottom: 5px; text-transform: uppercase;
+}
+.goal-card .main-goal .calories {
+    font-size: 48px; font-weight: 700; color: white; line-height: 1;
+}
+.goal-card .macros-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 15px; margin-bottom: 20px;
+}
+.goal-card .macro-item {
+    background-color: #282828; padding: 15px;
+    border-radius: 8px; text-align: center;
+}
+.goal-card .macro-item h4 {
+    font-size: 14px; font-weight: 500; color: var(--secondary-text-color);
+    margin-bottom: 8px;
+}
+.goal-card .macro-item .value {
+    font-size: 22px; font-weight: 600; color: var(--primary-text-color);
+}
+.goal-card .macro-item .underlined-container {
+    display: inline-block; position: relative;
+    padding-bottom: 4px; line-height: 1;
+}
+.goal-card .macro-item .underlined-container::after {
+    content: ''; position: absolute; left: 0; right: 0; bottom: 0;
+    height: 2px; background-color: var(--accent-orange);
+}
+.goal-card .macro-item .underlined-container .value-number { vertical-align: baseline; }
+.goal-card .macro-item .underlined-container .value-unit {
+    font-size: 16px; font-weight: 400; color: var(--secondary-text-color);
+    margin-left: 1px; vertical-align: baseline;
+}
+.goal-card .macro-item .value-grams {
+    font-size: 18px; margin-top: 5px; color: var(--secondary-text-color);
+}
+.goal-card .macro-item .value-grams .value-unit,
+.goal-card .macro-item .value .value-unit {
+    font-size: 16px; font-weight: 400; color: var(--secondary-text-color);
+    margin-left: 2px;
+}
+.goal-card .macro-item .value .value-unit[style*="font-size:22px"] { font-size: 22px !important; }
+
+/* Inputs de Telefone (Onboarding) - Mantidos do seu original */
+.phone-input-group { display: flex; gap: 0; margin-bottom: 20px; }
+.phone-input-group .form-group { margin-bottom: 0; }
+.phone-input-group input[name="phone_prefix"] {
+    flex-basis: 60px; flex-grow: 0; flex-shrink: 0; text-align: center;
+    background-color: var(--bg-color); border-right: none;
+    border-top-right-radius: 0; border-bottom-right-radius: 0;
+    padding-left: 5px; padding-right: 5px; color: var(--secondary-text-color);
+}
+.phone-input-group input[name="phone_ddd"] {
+    flex-basis: 70px; flex-grow: 0; flex-shrink: 0; text-align: center;
+    border-left: none; border-right: none; border-radius: 0;
+}
+.phone-input-group input[name="phone_number"] {
+    flex-grow: 1; flex-shrink: 1; flex-basis: 0; min-width: 110px;
+    border-left: none; border-top-left-radius: 0; border-bottom-left-radius: 0;
+    border-top-right-radius: 8px; border-bottom-right-radius: 8px;
+}
+.phone-input-group.focused {
+    border: 1px solid var(--accent-orange);
+    box-shadow: 0 0 0 2px rgba(255, 107, 0, 0.3);
+    border-radius: 8px;
+}
+.phone-input-group.focused .form-control {
+    border-color: transparent !important; box-shadow: none;
+}
+
+.login-logo {
+    display: block; max-width: 180px; width: 70%; height: auto;
+    margin: 40px auto 25px auto;
+    animation: pulse 2.5s infinite cubic-bezier(0.4, 0, 0.6, 1);
+    transition: transform 0.3s ease; cursor: pointer;
+}
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.03); opacity: 0.85; }
+    100% { transform: scale(1); opacity: 1; }
+}
+.login-logo:active { transform: scale(0.97); }
+
+/* Media Query Global (Aplicada ao Dashboard, Onboarding, etc.) */
+@media (max-width: 400px) {
+    .goal-card .macros-grid { gap: 10px; }
+    .goal-card .macro-item { padding: 12px; }
+    .goal-card .macro-item h4 { font-size: 13px; margin-bottom: 6px; }
+    .goal-card .macro-item .value,
+    .goal-card .macro-item .underlined-container .value-number { font-size: 20px; }
+    .goal-card .macro-item .underlined-container .value-unit,
+    .goal-card .macro-item .value-grams .value-unit,
+    .goal-card .macro-item .value .value-unit { font-size: 14px; }
+    .goal-card .macro-item .value-grams { font-size: 16px; margin-top: 4px; }
+    .goal-card .macro-item .value .value-unit[style*="font-size:22px"] { font-size: 20px !important; }
+
+    .phone-input-group input[name="phone_prefix"] { flex-basis: 50px; padding-left: 4px; padding-right: 4px; }
+    .phone-input-group input[name="phone_ddd"] { flex-basis: 60px; }
+}
+
+
+/* --- ESTILOS ESPECÍFICOS PARA MAIN_APP.PHP (ESCOPADOS COM .main-app-interface) --- */
+/* Todos os seletores abaixo SÓ se aplicarão se estiverem dentro de <div class="main-app-interface"> */
+
+.main-app-interface .main-app-container { /* Container interno da main_app */
+    width: 100%;
+    max-width: 480px; /* Mesma largura do .container global */
+    padding: 0 0 90px 0; /* Espaço para o bottom-nav, sem padding lateral próprio */
+    background-color: var(--bg-color); /* Garante o mesmo fundo do body */
+}
+
+/* Cards Padronizados DENTRO DA MAIN_APP */
+.main-app-interface .card-shadow {
+    background-color: var(--surface-color);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+.main-app-interface .card-shadow-light {
+    background-color: var(--surface-color);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+.main-app-interface .card-shadow-prominent {
+    background-image: linear-gradient(135deg, var(--accent-orange), var(--accent-red));
+    color: white;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 20px; /* Unificado com .card-shadow */
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    text-align: center;
+}
+.main-app-interface .card-shadow-prominent h2,
+.main-app-interface .card-shadow-prominent p {
+    color: white;
+}
+.main-app-interface .card-shadow-prominent .btn { /* Botão DENTRO do card proeminente da main_app */
+    /* Sobrescreve o .btn global */
+    display: inline-flex; /* Para alinhar ícone */
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white;
+    font-weight: 500; /* Diferente do .btn-primary global */
+}
+.main-app-interface .card-shadow-prominent .btn:hover {
+    background: rgba(255,255,255,0.25);
+}
+/* Ícone dentro do botão do card proeminente */
+.main-app-interface .card-shadow-prominent .btn i.btn-icon-fa {
+    margin-right: 6px;
+    font-size: 1em; /* Relativo ao texto do botão */
+}
+
+
+/* Título da Seção DENTRO DA MAIN_APP */
+.main-app-interface .section-title {
+    font-size: 1.25em;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--primary-text-color);
+}
+
+/* Link "Ver todas" DENTRO DA MAIN_APP */
+.main-app-interface .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.main-app-interface .section-header .section-title {
+    margin-bottom: 0;
+}
+.main-app-interface .view-all-link.animated-underline {
+    position: relative; text-decoration: none; font-size: 0.9em;
+    color: var(--secondary-text-color); font-weight: 500;
+}
+.main-app-interface .view-all-link.animated-underline::after {
+    content: ''; position: absolute; width: 0; height: 1.5px;
+    display: block; margin-top: 2px; right: 0;
+    background: var(--accent-orange); transition: width 0.3s ease;
+}
+.main-app-interface .view-all-link.animated-underline:hover::after { width: 100%; left: 0; }
+.main-app-interface .view-all-link.animated-underline:hover { color: var(--accent-orange); }
+
+/* Cabeçalho da Página main_app.php */
+.main-app-interface .main-header-app {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 0 20px 0; margin-bottom: 20px;
+}
+.main-app-interface .user-greeting {
+    font-size: 1.5em; font-weight: 400; color: var(--primary-text-color);
+}
+.main-app-interface .user-greeting .user-first-name { font-weight: 600; }
+.main-app-interface .header-actions { display: flex; align-items: center; gap: 12px; }
+.main-app-interface .header-action-link i.fas {
+    font-size: 22px; color: var(--secondary-text-color); transition: color 0.2s ease;
+}
+.main-app-interface .header-action-link:hover i.fas { color: var(--accent-orange); }
+
+/* Banner de Peso Atual DENTRO DA MAIN_APP */
+.main-app-interface .current-weight-banner { /* HTML deve ter <div class="current-weight-banner card-shadow-light"> */
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 18px; margin-bottom: 20px; font-size: 1em;
+}
+.main-app-interface .current-weight-banner .editable-field { font-weight: 600; color: var(--accent-orange); }
+.main-app-interface .current-weight-banner i.edit-icon {
+    font-size: 17px; color: var(--secondary-text-color); cursor: pointer;
+    transition: color 0.2s ease; margin-left: 10px;
+}
+.main-app-interface .current-weight-banner i.edit-icon:hover { color: var(--accent-orange); }
+
+/* Resumo Diário Card DENTRO DA MAIN_APP */
+.main-app-interface .daily-summary-card h2.section-title { text-align: center; margin-bottom: 20px; }
+.main-app-interface .consumption-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.main-app-interface .consumption-item { text-align: center; display: flex; flex-direction: column; align-items: center; }
+.main-app-interface .consumption-item p { font-size: 0.8em; color: var(--secondary-text-color); margin-top: 6px; }
+.main-app-interface .progress-circle { width: 60px; height: 60px; position: relative; }
+.main-app-interface .circular-chart { display: block; margin: 0 auto; }
+.main-app-interface .circle-bg { fill: none; stroke: var(--border-color); stroke-width: 2.8; }
+.main-app-interface .circle {
+    fill: none; stroke: var(--accent-orange); stroke-width: 3.0;
+    stroke-linecap: round; animation: progress-animation 1s ease-out forwards; /* @keyframes progress-animation é global */
+    transform-origin: center; transform: rotate(-90deg);
+}
+.main-app-interface .percentage-text {
+    fill: var(--primary-text-color); font-family: 'Poppins', sans-serif;
+    font-size: 12px; font-weight: 600; text-anchor: middle; dominant-baseline: middle;
+}
+
+/* Card de Hidratação DENTRO DA MAIN_APP */
+.main-app-interface .hydration-tracker-card { text-align: center; }
+.main-app-interface .hydration-tracker-card .hydration-icon-text {
+    display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 15px;
+}
+.main-app-interface .hydration-icon-text i.water-drop-icon { font-size: 24px; color: var(--accent-orange); }
+.main-app-interface .hydration-tracker-card h3 {
+    font-size: 1.1em; color: var(--primary-text-color); margin: 0; font-weight: 500;
+}
+.main-app-interface .water-controls {
+    display: flex; align-items: center; justify-content: center; gap: 18px; margin-bottom: 15px;
+}
+.main-app-interface .water-btn {
+    background: var(--surface-color); color: var(--accent-orange);
+    border: 1px solid var(--border-color); border-radius: 50%;
+    width: 34px; height: 34px; font-size: 1.7em; line-height: 32px; cursor: pointer;
+    font-weight: 400; transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    display: flex; align-items: center; justify-content: center;
+}
+.main-app-interface .water-btn:hover { background: var(--accent-orange); color: white; border-color: var(--accent-orange); }
+.main-app-interface .water-status { font-size: 1em; }
+.main-app-interface .water-status span { font-weight: 600; }
+.main-app-interface .water-progress-bar-container {
+    width: 75%; height: 6px; background-color: var(--border-color);
+    border-radius: 3px; margin: 0 auto 5px auto; overflow: hidden;
+}
+.main-app-interface .water-progress-bar-fill {
+    height: 100%; background-image: linear-gradient(90deg, var(--accent-orange), var(--accent-red));
+    border-radius: 3px; width: 0%; transition: width 0.5s ease-out;
+}
+
+/* Seção de Rotina DENTRO DA MAIN_APP */
+.main-app-interface .routine-items-carousel {
+    display: flex; overflow-x: auto; gap: 12px; padding: 5px 2px 15px 2px;
+    -ms-overflow-style: none; scrollbar-width: none;
+}
+.main-app-interface .routine-items-carousel::-webkit-scrollbar { display: none; }
+.main-app-interface .routine-item { /* HTML deve ter <div class="routine-item card-shadow-light"> */
+    min-width: 200px; max-width: 200px; flex-shrink: 0;
+    display: flex; flex-direction: column; justify-content: space-between; min-height: 120px;
+}
+.main-app-interface .routine-item p {
+    font-size: 0.95em; color: var(--primary-text-color); margin-bottom: 12px; line-height: 1.4; flex-grow: 1;
+}
+.main-app-interface .routine-actions { display: flex; justify-content: flex-end; gap: 8px; }
+.main-app-interface .routine-btn-action {
+    background-color: transparent; border: 1.5px solid var(--border-color);
+    color: var(--secondary-text-color); border-radius: 50%;
+    width: 32px; height: 32px; cursor: pointer; transition: all 0.2s ease;
+    display: flex; align-items: center; justify-content: center;
+}
+.main-app-interface .routine-btn-action i.fas { font-size: 14px; line-height: 1; }
+.main-app-interface .routine-btn-action.yes.active { background-color: var(--success-color); border-color: var(--success-color); color: white; }
+.main-app-interface .routine-btn-action.no.active { background-color: var(--danger-color); border-color: var(--danger-color); color: white; }
+.main-app-interface .routine-btn-action:not(.active):hover { border-color: var(--secondary-text-color); color: var(--primary-text-color); }
+
+/* Card de Adicionar Refeição DENTRO DA MAIN_APP */
+.main-app-interface .meal-prompt-card i.meal-prompt-icon { /* HTML: <section class="meal-prompt-card card-shadow-prominent"> */
+    font-size: 32px; margin-bottom: 12px; color: rgba(255,255,255,0.8);
+    display: block; margin-left: auto; margin-right: auto;
+}
+.main-app-interface .meal-prompt-card h2 { font-size: 1.4em; margin-bottom: 6px; }
+.main-app-interface .meal-prompt-card p { margin-bottom: 20px; font-size: 1em; opacity: 0.85; }
+/* O botão .add-meal-main-btn dentro deste card já está estilizado por .main-app-interface .card-shadow-prominent .btn */
+
+/* Sugestões de Refeições DENTRO DA MAIN_APP */
+.main-app-interface .suggestions-carousel {
+    display: flex; overflow-x: auto; gap: 12px; padding: 5px 2px 15px 2px;
+    -ms-overflow-style: none; scrollbar-width: none;
+}
+.main-app-interface .suggestions-carousel::-webkit-scrollbar { display: none; }
+.main-app-interface .suggestion-item { /* HTML: <div class="suggestion-item card-shadow-light"> */
+    width: 140px; min-width: 140px; flex-shrink: 0;
+    display: flex; flex-direction: column;
+}
+.main-app-interface .suggestion-item img {
+    width: 100%; height: 80px; object-fit: cover; border-radius: 6px 6px 0 0; margin-bottom: 8px;
+}
+.main-app-interface .suggestion-item h3 {
+    font-size: 0.9em; font-weight: 500; color: var(--primary-text-color); margin-bottom: 4px; line-height: 1.3;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+    overflow: hidden; text-overflow: ellipsis; min-height: 2.6em;
+}
+.main-app-interface .suggestion-item span { font-size: 0.75em; color: var(--secondary-text-color); margin-top: auto; }
+
+/* Lista de Refeições do Dia DENTRO DA MAIN_APP */
+.main-app-interface .todays-meals-list-section { margin-bottom: 15px; }
+.main-app-interface .meal-list-main { list-style: none; padding: 0; margin: 0; }
+.main-app-interface .meal-list-item { /* HTML: <li class="meal-list-item card-shadow-light"> */
+    margin-bottom: 10px; transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.main-app-interface .meal-list-item:hover { transform: translateY(-1px); box-shadow: 0 3px 10px rgba(0,0,0,0.22); }
+.main-app-interface .meal-list-item a {
+    color: var(--primary-text-color); text-decoration: none;
+    display: flex; justify-content: space-between; align-items: center;
+    font-weight: 500; padding: 10px 15px;
+}
+.main-app-interface .meal-list-item a span:first-child { display: flex; align-items: center; gap: 10px; }
+.main-app-interface .meal-list-item a i.fas {
+    font-size: 17px; color: var(--secondary-text-color); width: 20px;
+    text-align: center; transition: color 0.2s ease; line-height: 1;
+}
+.main-app-interface .meal-list-item a:hover i.fas { color: var(--accent-orange); }
+.main-app-interface .meal-list-item .meal-kcal { color: var(--accent-orange); font-size: 0.9em; font-weight: 600; }
+
+/* Navegação Inferior Fixa DENTRO DA MAIN_APP */
+.main-app-interface .bottom-nav { /* Se for SÓ da main_app. Se for global, remova .main-app-interface daqui */
+    position: fixed; bottom: 0; left: 0; right: 0; background-color: #1A1A1A;
+    display: flex; justify-content: space-around; align-items: center;
+    padding: 6px 0; box-shadow: 0 -2px 8px rgba(0,0,0,0.35);
+    z-index: 1000; border-top: 1px solid #282828;
+}
+.main-app-interface .nav-item {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    color: var(--secondary-text-color); text-decoration: none; font-size: 10px;
+    padding: 4px 5px; flex: 1; text-align: center; transition: color 0.2s ease; min-height: 48px;
+}
+.main-app-interface .nav-item i.fas { font-size: 20px; margin-bottom: 2px; line-height: 1; }
+.main-app-interface .nav-item.active,
+.main-app-interface .nav-item:hover { color: var(--accent-orange); }
+
+
+/* Media Queries ESCOPADAS para .main-app-interface */
+@media (max-width: 400px) {
+    .main-app-interface .main-app-container { padding-bottom: 80px; }
+
+    .main-app-interface .main-header-app { flex-direction: column; gap: 8px; align-items: flex-start; padding-bottom: 15px;}
+    .main-app-interface .user-greeting { font-size: 1.3em; }
+    .main-app-interface .header-actions { align-self: flex-end; gap: 10px;}
+    .main-app-interface .header-action-link i.fas { font-size: 20px; }
+
+    .main-app-interface .current-weight-banner { font-size: 0.95em; padding: 10px 15px; margin-bottom: 15px; }
+    .main-app-interface .current-weight-banner i.edit-icon { font-size: 16px; }
+
+    .main-app-interface .section-title { font-size: 1.15em; }
+    .main-app-interface .card-shadow,
+    .main-app-interface .card-shadow-light,
+    .main-app-interface .card-shadow-prominent { padding: 15px; margin-bottom: 15px; }
+    .main-app-interface .card-shadow-prominent { padding: 20px; }
+
+    .main-app-interface .consumption-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .main-app-interface .progress-circle { width: 55px; height: 55px; }
+    .main-app-interface .percentage-text { font-size: 11px; }
+    .main-app-interface .consumption-item p { font-size: 0.75em; }
+
+    .main-app-interface .hydration-tracker-card h3 { font-size: 1em; }
+    .main-app-interface .hydration-icon-text i.water-drop-icon { font-size: 22px; }
+    .main-app-interface .water-controls { gap: 15px;}
+    .main-app-interface .water-btn { width: 30px; height: 30px; font-size: 1.5em; line-height: 28px;}
+    .main-app-interface .water-status { font-size: 0.95em; }
+    .main-app-interface .water-progress-bar-container { width: 85%; }
+
+    .main-app-interface .routine-item { min-width: 160px; max-width: 160px; min-height: 110px; padding: 12px; }
+    .main-app-interface .routine-item p { font-size: 0.9em; }
+    .main-app-interface .routine-btn-action { width: 30px; height: 30px; }
+    .main-app-interface .routine-btn-action i.fas { font-size: 13px; }
+
+    .main-app-interface .meal-prompt-card i.meal-prompt-icon { font-size: 28px; }
+    .main-app-interface .meal-prompt-card h2 { font-size: 1.25em; }
+    .main-app-interface .meal-prompt-card p { font-size: 0.9em; margin-bottom: 15px; }
+    .main-app-interface .add-meal-main-btn { font-size: 1em; padding: 10px 20px; }
+    .main-app-interface .card-shadow-prominent .btn i.btn-icon-fa { font-size: 0.95em; }
+
+
+    .main-app-interface .suggestion-item { width: 125px; min-width: 125px; }
+    .main-app-interface .suggestion-item img { height: 70px; }
+    .main-app-interface .suggestion-item h3 { font-size: 0.85em; min-height: 2.4em; }
+    .main-app-interface .suggestion-item span { font-size: 0.7em; }
+
+    .main-app-interface .meal-list-item a { padding: 10px 12px; }
+    .main-app-interface .meal-list-item a i.fas { font-size: 16px; width: 18px;}
+    .main-app-interface .meal-list-item .meal-kcal { font-size: 0.85em; }
+
+    .main-app-interface .bottom-nav { padding: 4px 0; }
+    .main-app-interface .nav-item { font-size: 9px; min-height: 45px; padding: 3px 4px;}
+    .main-app-interface .nav-item i.fas { font-size: 18px; margin-bottom: 1px; }
+ 
+}
+
+/* Adicione ao seu public_html/shapefit/assets/css/style.css */
+
+/* --- Estilos para a Página de Visão Geral de Tipos de Refeição (meal_types_overview.php) --- */
+
+.meal-types-overview-container .page-title {
+    font-size: 1.8em; /* Um pouco menor que o page-title padrão se quiser */
+}
+
+.meal-type-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Duas colunas */
+    gap: 20px; /* Espaçamento entre os cards */
+    margin-top: 20px;
+}
+
+.meal-type-card {
+    display: block;
+    background-color: var(--surface-color);
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--primary-text-color);
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.meal-type-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+}
+
+.meal-type-card img {
+    width: 100%;
+    max-width: 120px; /* Ajuste conforme o tamanho das suas imagens */
+    height: auto;
+    max-height: 100px; /* Para manter a proporção e não esticar muito */
+    object-fit: contain; /* Ou 'cover' dependendo das imagens */
+    margin-bottom: 15px;
+    border-radius: 8px; /* Opcional, se as imagens tiverem fundo e você quiser bordas suaves */
+}
+
+.meal-type-card h3 {
+    font-size: 1.1em;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* Ajustes para telas menores se necessário */
+@media (max-width: 400px) {
+    .meal-type-grid {
+        gap: 15px;
+    }
+    .meal-type-card {
+        padding: 12px;
+    }
+    .meal-type-card img {
+        max-width: 100px;
+        margin-bottom: 10px;
+    }
+    .meal-type-card h3 {
+        font-size: 1em;
+    }
+}
+
+/* Em main_app_specific.css ou recipe_detail_page.css */
+.recipe-action-favorite.is-favorited i.fa-heart,
+.favorite-toggle-btn.is-favorited i.fa-heart { /* Classe genérica para botões de favoritar */
+    color: var(--accent-red); /* Ou sua cor de favorito */
+}
+/* ================================== */
+/* Estilos para o Modal do Scanner    */
+/* ================================== */
+
+/* Fundo escurecido que cobre a tela toda */
+.modal-overlay {
+    position: fixed; /* Chave para cobrir a tela */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Fundo semi-transparente */
+    display: flex; /* Para centralizar o conteúdo */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Garante que fique por cima de tudo */
+    padding: 15px;
+}
+
+/* O card branco/cinza do modal */
+.modal-content {
+    background-color: var(--background-color, #1a1a1a); /* Usa a cor de fundo do seu tema */
+    padding: 20px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 500px; /* Limita a largura em telas grandes */
+    max-height: 90vh; /* Limita a altura para caber na tela */
+    overflow-y: auto; /* Adiciona scroll se o conteúdo for grande */
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.modal-title {
+    margin-top: 0;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Botão de fechar (X) */
+.modal-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.8em;
+    font-weight: bold;
+    color: var(--secondary-text-color, #888);
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 1;
+}
+
+/* Container onde o vídeo da câmera aparece */
+#scanner-container {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #333; /* Cor de fundo enquanto a câmera carrega */
+    position: relative;
+}
+
+/* Estilo para o vídeo da câmera se ajustar ao container */
+#scanner-container video {
+    width: 100% !important;
+    height: auto !important;
+    display: block;
+}
+
+/* --- NAVEGAÇÃO INFERIOR (RESTaurada) --- */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    
+    /* --- CORREÇÃO DEFINITIVA DE CENTRALIZAÇÃO --- */
+    /* Deixa uma margem automática à esquerda e à direita, forçando a centralização */
+    left: 0; 
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    /* --- FIM DA CORREÇÃO --- */
+    
+    width: 100%; /* Ocupa 100% da largura disponível */
+    max-width: 480px; /* Mas não passa deste limite */
+    
+    /* Estilo visual */
+    background-color: #1E1E1E;
+    height: 65px;
+    padding: 0 10px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.25);
+    border-top: 1px solid var(--border-color);
+    
+    /* Layout interno e empilhamento */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Os seletores .nav-item e outros podem continuar como estavam */
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--secondary-text-color);
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 500;
+    flex: 1;
+    text-align: center;
+    height: 100%;
+    transition: color 0.2s ease, transform 0.2s ease;
+    position: relative;
+}
+.nav-item i.fas { font-size: 22px; margin-bottom: 4px; }
+.nav-item.active,
+.nav-item:hover { color: var(--accent-orange); }
+.nav-item:active { transform: scale(0.95); }
+
+/* Estilo para o card de "Tudo Concluído" */
+.all-done-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 25px 20px;
+    margin: 10px 0; /* Espaçamento vertical */
+    border: 2px dashed var(--border-color);
+    border-radius: 12px;
+    background-color: rgba(0,0,0,0.1); /* Fundo sutil */
+    min-height: 120px; /* Garante uma altura mínima, mesmo no carrossel */
+    width: 100%; /* Ocupa todo o espaço disponível no container */
+}
+
+/* Opcional: No carrossel da main_app, podemos dar um tamanho fixo */
+.routine-items-carousel .all-done-card {
+    min-width: 250px; /* Um pouco maior que um item normal */
+    flex-shrink: 0;
+}
+
+.all-done-card i.fas {
+    font-size: 36px;
+    color: var(--accent-orange);
+    margin-bottom: 15px;
+    /* Animação sutil de pulso */
+    animation: pulse-icon 2s infinite ease-in-out;
+}
+
+.all-done-card p {
+    font-size: 1.05em; /* Ligeiramente maior */
+    font-weight: 500;
+    color: var(--secondary-text-color);
+    line-height: 1.4;
+    margin: 0;
+}
+
+@keyframes pulse-icon {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+/* =================================== */
+/*    POPUP SYSTEM V3 - CLEAN & PRO    */
+/* =================================== */
+
+/* --- Base do Popup (Estilo principal para todos) --- */
+/* ======================================= */
+/*    POPUP SYSTEM V4 - MINIMALIST & CLEAN   */
+/* ======================================= */
+
+/* --- Base do Popup (Estilo principal para todos) --- */
+.points-popup {
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #E0E0E0; /* Texto principal quase branco */
+    padding: 12px 22px;
+    border-radius: 50px;
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    font-size: 1em;
+    font-weight: 600;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+    animation: floatUpAndFade 2.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    pointer-events: none;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(20, 20, 20, 0.8); /* Fundo padrão para todos */
+}
+
+.points-popup img {
+    width: 24px;
+    height: auto;
+    object-fit: contain;
+    margin-right: 12px;
+}
+
+/* --- Variação para GANHO NORMAL --- */
+/* Não precisa de estilo extra, já usa a base. */
+.points-popup.gain {}
+
+/* --- Variação para PERDA (Design Sutil) --- */
+.points-popup.loss {
+    /* Mantém o mesmo fundo, mas com ícone sutil */
+}
+.points-popup.loss img {
+    filter: grayscale(1);
+    opacity: 0.6;
+}
+/* O texto de perda já será "-X Pontos" pelo JS, sem cor especial */
+
+
+/* --- Variação para BÔNUS (Destaque Verde) --- */
+.points-popup.bonus {
+    border: 2px solid var(--success-color); /* Borda VERDE, mais grossa */
+    animation: floatUpAndPulse 3s ease-out forwards;
+    padding: 14px 24px;
+}
+/* Todo o texto e o ícone dentro do bônus ficarão verdes */
+.points-popup.bonus,
+.points-popup.bonus .message-points,
+.points-popup.bonus .message-text {
+    color: var(--success-color); /* Cor VERDE para o texto e os pontos */
+}
+.points-popup.bonus img {
+    /* Aplica um filtro para tentar deixar o ícone verde */
+    filter: grayscale(1) sepia(1) hue-rotate(50deg) saturate(5) brightness(0.9);
+}
+
+
+/* --- Animações (Mantidas como estavam) --- */
+@keyframes floatUpAndFade {
+    0% { opacity: 0; transform: translate(-50%, 20px); }
+    15% { opacity: 1; transform: translate(-50%, 0); }
+    85% { opacity: 1; transform: translate(-50%, -5px); }
+    100% { opacity: 0; transform: translate(-50%, -20px); }
+}
+
+@keyframes floatUpAndPulse {
+    0% { opacity: 0; transform: translate(-50%, 20px) scale(0.95); }
+    20% { opacity: 1; transform: translate(-50%, 0) scale(1.05); }
+    30% { transform: translate(-50%, 0) scale(1); }
+    85% { opacity: 1; transform: translate(-50%, -10px) scale(1); }
+    100% { opacity: 0; transform: translate(-50%, -30px) scale(0.95); }
+}
+
+/* Estilo para o texto da meta de hidratação */
+.hydration-goal-text {
+    /* Remove a margem padrão do parágrafo */
+    margin: 0; 
+    margin-bottom: 12px;
+    font-size: 1em;
+    color: var(--primary-text-color);
+    line-height: 1.3;
+}
+
+.hydration-goal-text strong {
+    color: var(--accent-orange);
+}
+
+.goal-in-ml {
+    display: block; /* Faz com que fique na linha de baixo */
+    font-size: 0.8em;
+    font-weight: 400; /* Mais leve que o resto */
+    color: var(--secondary-text-color);
+    margin-top: 2px;
+}
+
+/* Adicione esta regra ao seu CSS para o JS funcionar no mobile */
+.info-tooltip-wrapper.is-active .tooltip-content {
+    opacity: 1;
+    visibility: visible;
+}
+
