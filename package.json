@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run copy:www",
+    "copy:www": "echo 'Nenhum build real necessário, apenas garantindo que os arquivos web estejam prontos.'"
   },
   "keywords": [],
   "author": "",
