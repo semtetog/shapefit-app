@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carregando ShapeFit...</title>
+    <style>
+        /* Estilo simples para a tela de carregamento */
+        body { display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #121212; margin: 0; }
+        .loader { border: 4px solid #f3f3f3; border-top: 4px solid #ff6b00; border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+    <!-- Inclui o JavaScript do Capacitor, necessário para os plugins funcionarem -->
+    <script src="capacitor.js"></script>
+</head>
+<body>
+    <div class="loader"></div>
+
+    <!-- MUDANÇA IMPORTANTE: Adicionado type="module" -->
+    <script type="module" src="assets/js/script.js"></script> 
+</body>
+</html>
