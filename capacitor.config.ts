@@ -5,7 +5,7 @@ const config: CapacitorConfig = {
   appName: 'ShapeFit',
   webDir: 'www',
   server: {
-    url: "https://www.appshapefit.com",
+    url: "https://www.deciogames.com.br",
     cleartext: true
   },
   plugins: {

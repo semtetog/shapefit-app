@@ -1,49 +1,91 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-T" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>Sem Conexão</title>
-    <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: #f0f2f5;
-        }
-        .container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            height: 100%;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-        .icon {
-            font-size: 50px;
-            color: #ff6b00;
-            margin-bottom: 20px;
-        }
-        h1 {
-            color: #1c1c1c;
-            margin-bottom: 10px;
-        }
-        p {
-            color: #666;
-            font-size: 1.1em;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Offline - ShapeFit</title>
+
+    <!-- =================================================================== -->
+    <!-- INÍCIO DAS MUDANÇAS PARA FUNCIONAR OFFLINE                        -->
+    <!-- =================================================================== -->
+
+    <!-- SCRIPT DO CAPACITOR (ESSENCIAL!) -->
+    <script src="capacitor.js"></script>
+
+    <!-- ESTILOS: O ideal seria ter um arquivo CSS local com os estilos essenciais.
+         Por simplicidade, vamos usar o link externo, mas CIENTE de que ele não carregará offline.
+         A aparência ficará básica, mas a funcionalidade offline funcionará.
+         Para uma experiência perfeita, baixe o style.css para sua pasta www/assets/css
+         e mude o href para: "../assets/css/style.css" -->
+    <link rel="stylesheet" href="https://appshapefit.com/assets/css/style.css">
+
+    <!-- =================================================================== -->
+    <!-- FIM DAS MUDANÇAS                                                  -->
+    <!-- =================================================================== -->
 </head>
 <body>
-    <div class="container">
-        <!-- Você pode usar um ícone da Font Awesome ou uma imagem/SVG -->
-        <div class="icon">⚠️</div> 
-        <h1>Sem Conexão</h1>
-        <p>Você precisa estar conectado à internet para usar o ShapeFit.</p>
-        <p>Por favor, verifique sua rede e reinicie o aplicativo.</p>
-    </div>
+
+<div class="container text-center">
+    <!-- Imagem: Alterada para um caminho local. Você PRECISA ter essa imagem na sua pasta www -->
+    <img src="../assets/images/SHAPE-FIT-LOGO.png" alt="Shape Fit Logo" class="login-logo">
+    <p class="page-subtitle text-center" style="margin-top: 10px; margin-bottom: 30px;">Acesse sua conta</p>
+
+    <!-- Formulário modificado para funcionar offline -->
+    <form id="login-form">
+        <div class="form-group">
+            <input type="email" name="email" id="email" class="form-control" placeholder="Email" required>
+        </div>
+        
+        <div class="form-group">
+            <input type="password" name="password" id="password" class="form-control" placeholder="Senha" required>
+        </div>
+        
+        <button type="submit" class="btn btn-primary mt-2">Entrar</button>
+        
+        <p class="text-center mt-3" style="color: var(--secondary-text-color);">
+            Não tem uma conta? <a href="#" id="register-link" style="color: var(--accent-orange); text-decoration: none;">Cadastre-se</a>
+        </p>
+    </form>
+</div>
+
+
+<!-- =================================================================== -->
+<!-- SCRIPT INTELIGENTE DO CAPACITOR (O CÉREBRO DA PÁGINA)             -->
+<!-- =================================================================== -->
+<script type="module">
+    // Importa os plugins do Capacitor
+    import { Network } from 'https://unpkg.com/@capacitor/network@^5.0.0/dist/esm/index.js';
+    import { Preferences } from 'https://unpkg.com/@capacitor/preferences@^5.0.0/dist/esm/index.js';
+
+    // Lógica para o formulário e link de cadastro
+    const showOfflineAlert = (e) => {
+        e.preventDefault(); // Impede qualquer ação padrão
+        alert('Por favor, conecte-se à internet para continuar.');
+    };
+
+    document.getElementById('login-form').addEventListener('submit', showOfflineAlert);
+    document.getElementById('register-link').addEventListener('click', showOfflineAlert);
+
+    // Função para redirecionar quando a internet voltar
+    const handleConnectionChange = async (status) => {
+        if (status.connected) {
+            console.log('Internet conectada! Redirecionando...');
+            // Verifica se o usuário já estava logado
+            const { value } = await Preferences.get({ key: 'userIsLoggedIn' });
+
+            if (value === 'true') {
+                // Se estava logado, vai para a tela principal
+                window.location.href = "https://www.appshapefit.com/main_app.php";
+            } else {
+                // Se não, vai para a tela de login real
+                window.location.href = "https://www.appshapefit.com/auth/login.php";
+            }
+        }
+    };
+
+    // Adiciona o "ouvinte" que dispara a função acima quando a rede muda
+    Network.addListener('networkStatusChange', handleConnectionChange);
+</script>
+
 </body>
 </html>

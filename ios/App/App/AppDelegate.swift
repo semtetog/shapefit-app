@@ -6,10 +6,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    // ===================================================================
+    // INÍCIO DA MODIFICAÇÃO PARA TELA OFFLINE
+    // ===================================================================
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        // Adiciona um "ouvinte" para o status da rede
+        NotificationCenter.default.addObserver(forName: .capacitorNetworkStatusDidChange, object: nil, queue: .main) { [weak self] notification in
+            // Pega o view controller principal do Capacitor
+            guard let bridgeViewController = self?.window?.rootViewController as? CAPBridgeViewController else {
+                return
+            }
+
+            // Pega o status da notificação
+            guard let status = notification.userInfo?["status"] as? String else {
+                return
+            }
+
+            // Se estivermos offline E a URL atual não for a offline.html, carregamos ela
+            let isOffline = status == "none"
+            let currentUrl = bridgeViewController.webView?.url?.absoluteString ?? ""
+            let isNotOnOfflinePage = !currentUrl.contains("offline.html")
+
+            if isOffline && isNotOnOfflinePage {
+                // Tenta carregar o arquivo offline.html da pasta 'public' do projeto (que é onde o Capacitor coloca os arquivos da www)
+                if let offlineUrl = Bundle.main.url(forResource: "offline", withExtension: "html", subdirectory: "public") {
+                    bridgeViewController.webView?.load(URLRequest(url: offlineUrl))
+                }
+            }
+        }
         return true
     }
+    // ===================================================================
+    // FIM DA MODIFICAÇÃO
+    // ===================================================================
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -20,6 +49,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
+
+
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
